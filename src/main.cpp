@@ -134,5 +134,7 @@ int main(int argc, char *argv[])
 
     benchmarker->startBenchmarker();
 
+    delete benchmarker;
+    benchmarker = NULL;
     return 0;
 }

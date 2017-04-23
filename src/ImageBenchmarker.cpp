@@ -84,6 +84,8 @@ ImageBenchmarker::~ImageBenchmarker()
             delete workerArray[i];
         }
     }
+
+    delete factory;
 }
 
 Worker* ImageBenchmarker::getWorker(uint32_t index)
