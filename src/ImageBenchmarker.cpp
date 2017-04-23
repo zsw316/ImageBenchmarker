@@ -10,20 +10,22 @@ void ImageBenchmarker::runStatisticer()
     while(true)
     {
         uint32_t processCount = 0;
+        uint32_t sizeSum = 0;
         
         for(uint32_t i=0; i<getWorkerNum(); i++)
         {
             Worker *worker = getWorker(i);
             if (worker != NULL)
             {
-                worker->getStatisticAndClear(processCount);
+                worker->getStatisticAndClear(processCount, sizeSum);
             }
         }
 
         currentTimestamp = this->GetTimeStamp();
         double countPerSecond = 1000000.00 * ((double) processCount/(double)(currentTimestamp-lastTimestamp));
+        double sizePerSecond = 1000000.00 * ((double) sizeSum/(double)(currentTimestamp-lastTimestamp))/1024.00/2014.00;
 
-        printf("Image process speed per sec, %.2f images\n", countPerSecond);
+        printf("Benchmark: totoal %.2f images, %.2f MByte files processed per second\n", countPerSecond, sizePerSecond);
         
         lastTimestamp = this->GetTimeStamp();
 

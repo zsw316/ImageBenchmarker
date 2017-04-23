@@ -17,11 +17,13 @@ void GraphicsMagickHelper::init()
 
 void GraphicsMagickHelper::loadImage()
 {    
-	srcImage.read(imageOperation.srcImagePath);
+	cropSrcImage.read(imageOperation.srcImagePath);
 }
 
 bool GraphicsMagickHelper::cropImage(uint32_t targetWidth, uint32_t targetHeight)
 {
+	srcImage = cropSrcImage;
+
 	uint32_t srcWidth = srcImage.baseColumns();
 	uint32_t srcHeight = srcImage.baseRows();
 
@@ -48,12 +50,14 @@ bool GraphicsMagickHelper::cropImage(uint32_t targetWidth, uint32_t targetHeight
 
 		srcImage.crop(Geometry(uWidth, uHeight, uX, uY));
 		srcImage.sample(Geometry(targetWidth, targetHeight));
-	}catch(...)
+	}catch(std::exception &error)
 	{
-		error_log("crop failed, catch exception! src=%dx%d, dest=%dx%d\n",
-			srcWidth, srcHeight, targetWidth, targetHeight);
+		error_log("crop failed, catch exception! src=%dx%d, dest=%dx%d, exception:%s\n",
+			srcWidth, srcHeight, targetWidth, targetHeight, error.what());
 		return false;
 	}
+
+	srcImage.repage();
 
 	return true;
 }

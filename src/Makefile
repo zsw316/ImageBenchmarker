@@ -16,7 +16,7 @@ SRC_COMM = ImageHelper.cpp GraphicsMagickHelper.cpp OpenCvHelper.cpp ImageHelper
 OBJ_COMM = $(SRC_COMM:.cpp=.o)
 OBJ_COMM_M = $(SRC_COMM:.cpp=.mo)
 
-INCLUDE += -I../include/GraphicsMagick -I../include/opencv2
+INCLUDE += -I../include/GraphicsMagick -I../include/opencv2 -I/usr/include
 LIB +=../bin/libGraphicsMagick.so ../bin/libGraphicsMagick++.so ../bin/libopencv_core.so.3.2 ../bin/libopencv_calib3d.so.3.2 ../bin/libopencv_features2d.so.3.2 ../bin/libopencv_flann.so.3.2 ../bin/libopencv_highgui.so.3.2 ../bin/libopencv_imgcodecs.so.3.2 ../bin/libopencv_imgproc.so.3.2 ../bin/libopencv_ml.so.3.2 ../bin/libopencv_objdetect.so.3.2 ../bin/libopencv_photo.so.3.2 ../bin/libopencv_shape.so.3.2 ../bin/libopencv_stitching.so.3.2 ../bin/libopencv_superres.so.3.2 ../bin/libopencv_videoio.so.3.2 ../bin/libopencv_video.so.3.2 ../bin/libopencv_videostab.so.3.2 -lrt
 
 .SUFFIXES: .o .cpp

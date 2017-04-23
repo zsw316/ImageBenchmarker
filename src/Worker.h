@@ -31,7 +31,7 @@ public:
     void releaseMutex();
 
     void increaseStatistic();
-    void getStatisticAndClear(uint32_t &count);
+    void getStatisticAndClear(uint32_t &count, uint32_t &sum);
 
     ImageHelper *getImageHelper() {return this->imageHelper;}
 

@@ -12,6 +12,7 @@ typedef struct
 {
     ImageOperationType opType;
     const char *    srcImagePath;
+    uint32_t        srcImageSize;
     uint32_t        destImageWidth;
     uint32_t        destImageHeight;
 } ImageOperation;

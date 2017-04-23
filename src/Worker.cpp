@@ -63,11 +63,13 @@ uint64_t Worker::GetTimeStamp()
     return tv.tv_sec*(uint64_t)1000000+tv.tv_usec;
 }
 
-void Worker::getStatisticAndClear(uint32_t &count)
+void Worker::getStatisticAndClear(uint32_t &count, uint32_t &sum)
 {
     obtainMutex();
     count += this->statistic.processCount;
+    sum += this->statistic.sizeSum;
     this->statistic.processCount = 0;
+    this->statistic.sizeSum = 0;
     releaseMutex();
 }
 
@@ -75,6 +77,7 @@ void Worker::increaseStatistic()
 {
     obtainMutex();
     this->statistic.processCount++;
+    this->statistic.sizeSum += this->getImageHelper()->getSrcImageSize();
     releaseMutex();
 }
 

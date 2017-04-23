@@ -36,6 +36,8 @@ public:
 
     void setImageOperation(ImageOperation &op);
 
+    uint32_t getSrcImageSize();
+
 public:
     ImageOperation imageOperation;
 };

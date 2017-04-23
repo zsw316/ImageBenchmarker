@@ -26,7 +26,8 @@ public:
 
 private:
     Image srcImage;
-
+    Blob srcBlob;
+    Image cropSrcImage;
 };
 
 #endif

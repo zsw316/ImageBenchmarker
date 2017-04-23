@@ -5,6 +5,8 @@
 #include <iostream>  
 #include <unistd.h>
 #include <cstdlib>
+#include <io.h>
+#include <sys/stat.h>
 #include "def.h"
 #include "ImageBenchmarker.h"
 
@@ -88,7 +90,11 @@ int main(int argc, char *argv[])
                     exit(1);
                 }
 
-                imageOperation.srcImagePath = optarg;  
+                imageOperation.srcImagePath = optarg; 
+                struct stat info;
+                stat(optarg, &info);
+                imageOperation.srcImageSize = info.st_size;
+                debug_log("Source file size: %u\n", imageOperation.srcImageSize);
                 break;  
             }
             
